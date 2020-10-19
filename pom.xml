@@ -45,14 +45,15 @@
 			</exclusions>
 		</dependency>
 	</dependencies>
-	<pluginManagement> 
+	
+	<build>
+		<pluginManagement> 
 		<plugin>
 					<artifactId>maven-compiler-plugin</artifactId>
 					<version>3.8.0</version>
 					
 		</plugin>
 	</pluginManagement>
-	<build>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
