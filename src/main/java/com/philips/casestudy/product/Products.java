@@ -12,13 +12,17 @@ import javax.persistence.Id;
 		 	private String category;
 		 	private String name;
 		 	private int price;
+			private boolean touchScreen;
+	 	        private boolean wireless;
 		 	public Products() {}
-			public Products(int id, String category, String name, int price) {
+			public Products(int id, String category, String name, int price,boolean touchScreen,boolean wireless) {
 				super();
 				this.id = id;
 				this.category = category;
 				this.name = name;
 				this.price = price;
+				this.touchScreen = touchScreen;
+				this.wireless =wireless;
 			}
 			public int getId() {
 				return id;
@@ -44,9 +48,22 @@ import javax.persistence.Id;
 			public void setPrice(int price) {
 				this.price = price;
 			}
+		public boolean isTouchScreen() {
+			return touchScreen;
+		}
+		public void setTouchScreen(boolean touchScreen) {
+			this.touchScreen = touchScreen;
+		}
+		public boolean isWireless() {
+			return wireless;
+		}
+		public void setWireless(boolean wireless) {
+			this.wireless = wireless;
+		}
+
 			@Override
 			public String toString() {
-				return "Products [id=" + id + ", category=" + category + ", name=" + name + ", price=" + price + "]";
+				return "Products [id=" + id + ", category=" + category + ", name=" + name + ", price=" + price + ",touchScreen=" + touchScreen + ",wireless=" + wireless + "]";
 			}
 		 	
 		 	
