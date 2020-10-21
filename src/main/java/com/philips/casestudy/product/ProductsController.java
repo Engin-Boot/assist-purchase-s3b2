@@ -23,4 +23,12 @@ public class ProductsController
 	@ResponseBody
 	List<Products> getAllProductsWithGivenCategoryOrName(@RequestParam String category,@RequestParam String name)
 	{return produtsrepository.findByCategoryOrName(category, name);}
+	@GetMapping("/products/")
+	@ResponseBody
+	List<Products> getAllTouchScreenProductsbyCategory(@RequestParam String category,@RequestParam String name,@RequestParam String touchScreen)
+	{return produtsrepository.findAllTouchScreenProductsbyCategory(category, name,touchScreen);}
+	@GetMapping("/products/")
+	@ResponseBody
+	List<Products> getAllWirelessProductsbyCategory(@RequestParam String category,@RequestParam String name,@RequestParam String wireless)
+	{return produtsrepository.findAllWirelessProductsbyCategory(category, name,wireless);}
 }
