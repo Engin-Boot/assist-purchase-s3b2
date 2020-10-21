@@ -1,13 +1,13 @@
-package com.philips.casestudy;
-import com.philips.casestudy.product.*;
+package com.example.purchase;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class CasestudyApplication {
+public class PurchaseApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(CasestudyApplication.class, args);
+		SpringApplication.run(PurchaseApplication.class, args);
 	}
 
 }
