@@ -4,9 +4,13 @@ on:
   push:
     paths-ignore: 
       - '**.md'
+      - '**.sql'
+      - '**.txt' 
   pull_request:
     paths-ignore: 
       - '**.md'
+      - '**.sql'
+      - '**.txt' 
     
 jobs:
   build:
