@@ -1,1 +1,9 @@
+E:\assist-purchase-s3b2\src\main\java\com\example\purchase\dto\ProductDTO.java
+E:\assist-purchase-s3b2\src\main\java\com\example\purchase\entities\Product.java
+E:\assist-purchase-s3b2\src\main\java\com\example\purchase\services\ProductService.java
+E:\assist-purchase-s3b2\src\main\java\com\example\purchase\repositories\ProductRepository.java
+E:\assist-purchase-s3b2\src\main\java\com\example\purchase\exceptions\ProductDoesNotExistException.java
 E:\assist-purchase-s3b2\src\main\java\com\example\purchase\PurchaseApplication.java
+E:\assist-purchase-s3b2\src\main\java\com\example\purchase\exceptions\ProductAlreadyExistsException.java
+E:\assist-purchase-s3b2\src\main\java\com\example\purchase\controller\AdminController.java
+E:\assist-purchase-s3b2\src\main\java\com\example\purchase\controller\ClientController.java

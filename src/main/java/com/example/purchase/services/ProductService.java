@@ -13,10 +13,16 @@ public class ProductService {
 	@Autowired
 	private ProductRepository productrepository;
 	
+	public ProductService() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 	public ProductService(ProductRepository productrepository) {
 		super();
 		this.productrepository = productrepository;
 	}
+	public void setRepo(ProductRepository productrepository)
+	{this.productrepository = productrepository;}
 	public ProductDTO getProductDTO(int id,String name,int price,boolean isWireless,boolean isTouchscreen,boolean isInteroperable )
 	{
 		ProductDTO productdto=new ProductDTO();
@@ -38,7 +44,9 @@ public class ProductService {
 		return product;
 	}
 	public void saveValidProduct  (Product product) 
-	{this.productrepository.save(product);}
+	{productrepository.save(product);
+		//return product;
+		}
 	public void alterPrice(int id,int newPrice) throws ProductDoesNotExistException
 	{
 		//Optional<Product> p =productrepository.findById(id);
@@ -88,8 +96,6 @@ public class ProductService {
 			throw new ProductDoesNotExistException("isInteroperable cannot be altered beacuse there is noproduct with given id");
 	}
 	public Optional <Product> getProductsWithGivenId (int id)
-	{return this.productrepository.findById(id);}
-	
-	
+	{return productrepository.findById(id);}
 	
 }

@@ -21,10 +21,20 @@ ProductRepository productrepository;
 public ResponseEntity<List<Product>> getAllProducts()
 {return (new ResponseEntity (productrepository.findAll(),HttpStatus.OK));}
 
-@GetMapping("/purchase/client/category")
-public ResponseEntity<List<Product>> getAllProductsOfThatCategory(@RequestParam String category,@RequestParam boolean value)
+@GetMapping("/purchase/client/category/isWireless")
+public ResponseEntity<List<Product>> getProductsOfWirelessCategory(@RequestParam boolean value)
 {
-return( new ResponseEntity(productrepository.getProductsOfGivenCategory(category, value),HttpStatus.OK));
+return( new ResponseEntity(productrepository.getProductsOfWirelessCategory(value),HttpStatus.OK));
+}
+@GetMapping("/purchase/client/category/isTouchscreen")
+public ResponseEntity<List<Product>> getAllProductsOfTouchscreenCategory(@RequestParam boolean value)
+{
+return( new ResponseEntity(productrepository.getProductsOfTouchscreenCategory(value),HttpStatus.OK));
+}
+@GetMapping("/purchase/client/category/isInteroperable")
+public ResponseEntity<List<Product>> getAllProductsOfInteroperable(@RequestParam boolean value)
+{
+return( new ResponseEntity(productrepository.getProductsOfInteroperableCategory(value),HttpStatus.OK));
 }
 @GetMapping("/purchase/client/name")
 public ResponseEntity <List<Product>> getProductWithTheGivenName(@RequestParam String name) throws ProductDoesNotExistException
