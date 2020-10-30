@@ -1,10 +1,12 @@
 package com.example.purchase.controller;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -21,6 +23,12 @@ public class AdminController
 	
 	@Autowired 
 	ProductRepository productrepository;
+//	@Autowired
+	//ProductRepository productrepository;
+	@GetMapping("/purchase/admin/all")
+	public ResponseEntity<List<Product>> getAllProducts()
+	{return (new ResponseEntity (productrepository.findAll(),HttpStatus.OK));}
+
 	@PostMapping(path="/purchase/admin/",produces = "application/json", consumes = "application/x-www-form-urlencoded")
 	public ResponseEntity<String> addProduct( @RequestParam String name, @RequestParam int price,@RequestParam boolean isWireless, @RequestParam boolean isTouchscreen,@RequestParam boolean isInteroperable) throws ProductAlreadyExistsException
 	{
@@ -61,7 +69,7 @@ public class AdminController
 			//this.saveValidProduct(p.get(), productrepository);
 		}
 		else
-			throw new ProductDoesNotExistException("isInteroperable cannot be altered beacuse there is noproduct with given id");
+			throw new ProductDoesNotExistException(" cannot be updated because there is noproduct with given id");
 		
 		//return new ResponseEntity("given product updated",HttpStatus.OK);
 	}

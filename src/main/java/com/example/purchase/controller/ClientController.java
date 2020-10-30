@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class ClientController {
 @Autowired
 ProductRepository productrepository;
-@GetMapping("/purchase/client")
+@GetMapping("/purchase/client/all")
 public ResponseEntity<List<Product>> getAllProducts()
 {return (new ResponseEntity (productrepository.findAll(),HttpStatus.OK));}
 
