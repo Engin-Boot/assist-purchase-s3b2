@@ -24,6 +24,16 @@ public class Product {
 		this.isTouchscreen = isTouchscreen;
 		this.isInteroperable = isInteroperable;
 	}
+	public Product( String name, int price, boolean isWireless, boolean isTouchscreen,
+			boolean isInteroperable) {
+		super();
+		
+		this.name = name;
+		this.price = price;
+		this.isWireless = isWireless;
+		this.isTouchscreen = isTouchscreen;
+		this.isInteroperable = isInteroperable;
+	}
 	public Product() {
 		super();
 		// TODO Auto-generated constructor stub

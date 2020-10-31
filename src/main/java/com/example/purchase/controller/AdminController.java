@@ -1,14 +1,18 @@
 package com.example.purchase.controller;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,6 +20,10 @@ import com.example.purchase.entities.Product;
 import com.example.purchase.exceptions.ProductAlreadyExistsException;
 import com.example.purchase.exceptions.ProductDoesNotExistException;
 import com.example.purchase.repositories.ProductRepository;
+import com.example.purchase.services.ProductService;
+//import com.example.springboot.demo.Book;
+
+@CrossOrigin(origins="*")
 
 @RestController
 public class AdminController 
@@ -23,22 +31,37 @@ public class AdminController
 	
 	@Autowired 
 	ProductRepository productrepository;
+	@Autowired
+	ProductService productservice;
 //	@Autowired
 	//ProductRepository productrepository;
-	@GetMapping("/purchase/admin/all")
-	public ResponseEntity<List<Product>> getAllProducts()
-	{return (new ResponseEntity (productrepository.findAll(),HttpStatus.OK));}
+	@CrossOrigin(origins="*")
 
-	@PostMapping(path="/purchase/admin/",produces = "application/json", consumes = "application/x-www-form-urlencoded")
-	public ResponseEntity<String> addProduct( @RequestParam String name, @RequestParam int price,@RequestParam boolean isWireless, @RequestParam boolean isTouchscreen,@RequestParam boolean isInteroperable) throws ProductAlreadyExistsException
+	@GetMapping("/purchase/admin")
+	public ResponseEntity<List<Product>> getProducts(@RequestParam(required=false) Integer id,@RequestParam(required=false) Boolean wireless,@RequestParam(required=false) Boolean touchscreen,@RequestParam(required=false) Boolean interoperable)
 	{
-		Product temp=new Product(productrepository.getNextId(),name,price,isWireless,isTouchscreen,isInteroperable);
-		productrepository.save(temp);
+		//System.out.println(Arrays.toString(p.toArray()));
+		List <Product> p=productrepository.findAll();
+		p.retainAll(this.productservice.getAllProductsOfInteroperable(interoperable));
+		p.retainAll(this.productservice.getAllProductsOfTouchscreenCategory(touchscreen));
+		p.retainAll(this.productservice.getAllProductsOfWirelessCategory(wireless));
+		return (new ResponseEntity (p,HttpStatus.OK));
+		}
+	@CrossOrigin(origins="*")
+
+	@PostMapping(path="/purchase/admin",produces = "application/json", consumes = "application/json")
+	public ResponseEntity<String> addProduct( @RequestBody Product tempProduct) throws ProductAlreadyExistsException
+	{
+		Product product=new Product(tempProduct.getName(),tempProduct.getPrice(),tempProduct.isWireless(),tempProduct.isTouchscreen(),tempProduct.isInteroperable());
+		productrepository.save(product);
 		
 		return new ResponseEntity("new product added to the db",HttpStatus.CREATED);
 	}
-	@DeleteMapping (path="/purchase/admin/",produces = "application/json", consumes = "application/x-www-form-urlencoded")
-	public ResponseEntity<String> deleteProductWithGivenId(int id ) throws ProductDoesNotExistException
+	//@DeleteMapping("/purchase/admin/{id}")
+	@CrossOrigin(origins="*")
+	
+	@DeleteMapping (path="/purchase/admin/{id}")
+	public ResponseEntity<Map<String, Boolean>> deleteProductWithGivenId(@PathVariable int id ) throws ProductDoesNotExistException
 	{
 		Optional<Product> p =productrepository.findById(id);
 		if (p.isPresent())
@@ -52,19 +75,20 @@ public class AdminController
 			throw new ProductDoesNotExistException("e cannot be dleted beacuse there is noproduct with given id");
 		
 	}
-	@PutMapping (path="/purchase/admin/",produces = "application/json", consumes = "application/x-www-form-urlencoded")
-	public ResponseEntity<String> updateProduct(@RequestParam int id,@RequestParam String name, @RequestParam int price,@RequestParam boolean isWireless, @RequestParam boolean isTouchscreen,@RequestParam boolean isInteroperable) throws ProductDoesNotExistException
+	@CrossOrigin(origins="*")
+	@PutMapping (path="/purchase/admin",produces = "application/json", consumes = "application/json")
+	public void updateProduct(@RequestBody Product tempProduct) throws ProductDoesNotExistException
 	{
-		Optional<Product> p =productrepository.findById(id);
+		Optional<Product> p =productrepository.findById(tempProduct.getId());
 		if (p.isPresent())
 		{
-			p.get().setName(name);
-			p.get().setPrice(price);
-			p.get().setTouchscreen(isTouchscreen);
-			p.get().setInteroperable(isInteroperable);
-			p.get().setWireless(isWireless);
+			p.get().setName(tempProduct.getName());
+			p.get().setPrice(tempProduct.getPrice());
+			p.get().setTouchscreen(tempProduct.isTouchscreen());
+			p.get().setInteroperable(tempProduct.isInteroperable());
+			p.get().setWireless(tempProduct.isWireless());
 			productrepository.save(p.get());
-			return (new ResponseEntity("product updated",HttpStatus.OK));
+			//return (new ResponseEntity("product updated",HttpStatus.OK));
 			//p.get().setInteroperable(newisInteroperable);
 			//this.saveValidProduct(p.get(), productrepository);
 		}

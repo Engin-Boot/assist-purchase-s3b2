@@ -1,8 +1,13 @@
 package com.example.purchase.services;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.purchase.dto.ProductDTO;
 import com.example.purchase.entities.Product;
@@ -97,5 +102,28 @@ public class ProductService {
 	}
 	public Optional <Product> getProductsWithGivenId (int id)
 	{return productrepository.findById(id);}
+	//@GetMapping("/purchase/client/category/isWireless")
+	public List<Product> getAllProductsOfWirelessCategory( Boolean value)
+	{
+		List<Product> p=this.productrepository.findAll();
+		if(value!=null) p.retainAll(productrepository.getProductsOfWirelessCategory(value));
+		return p ;
+	}
+	//@GetMapping("/purchase/client/category/isTouchscreen")
+	public List<Product> getAllProductsOfTouchscreenCategory(@RequestParam (required=false)Boolean value)
+	{
+		List<Product> p=this.productrepository.findAll();
+		//List<Product> p=this.getAllProducts().getBody();
+		if(value!=null) p.retainAll(productrepository.getProductsOfTouchscreenCategory(value));
+		return p ;
+	}
+	//@GetMapping("/purchase/client/category/isInteroperable")
+	public List<Product> getAllProductsOfInteroperable(@RequestParam (required=false)Boolean value)
+	{
+		List<Product> p=this.productrepository.findAll();
+//		List<Product> p=this.getAllProducts().getBody();
+		if(value!=null) p.retainAll(productrepository.getProductsOfInteroperableCategory(value));
+		return p ;
+		}
 	
 }

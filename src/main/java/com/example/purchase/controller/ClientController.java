@@ -1,48 +1,37 @@
 package com.example.purchase.controller;
 import java.util.List;
-import com.example.purchase.exceptions.*;
-import com.example.purchase.entities.Product;
-import com.example.purchase.repositories.*;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.purchase.entities.Product;
+import com.example.purchase.repositories.ProductRepository;
+import com.example.purchase.services.ProductService;
+
 @RestController
+@CrossOrigin(origins="*")
+
 public class ClientController {
 @Autowired
 ProductRepository productrepository;
-@GetMapping("/purchase/client/all")
-public ResponseEntity<List<Product>> getAllProducts()
-{return (new ResponseEntity (productrepository.findAll(),HttpStatus.OK));}
+@Autowired
+ProductService productservice;
+@CrossOrigin(origins="*")
 
-@GetMapping("/purchase/client/category/isWireless")
-public ResponseEntity<List<Product>> getProductsOfWirelessCategory(@RequestParam boolean value)
+@GetMapping("/purchase/client")
+public ResponseEntity<List<Product>> getProducts(@RequestParam(required=false) Integer id,@RequestParam(required=false) Boolean wireless,@RequestParam(required=false) Boolean touchscreen,@RequestParam(required=false) Boolean interoperable)
 {
-return( new ResponseEntity(productrepository.getProductsOfWirelessCategory(value),HttpStatus.OK));
-}
-@GetMapping("/purchase/client/category/isTouchscreen")
-public ResponseEntity<List<Product>> getAllProductsOfTouchscreenCategory(@RequestParam boolean value)
-{
-return( new ResponseEntity(productrepository.getProductsOfTouchscreenCategory(value),HttpStatus.OK));
-}
-@GetMapping("/purchase/client/category/isInteroperable")
-public ResponseEntity<List<Product>> getAllProductsOfInteroperable(@RequestParam boolean value)
-{
-return( new ResponseEntity(productrepository.getProductsOfInteroperableCategory(value),HttpStatus.OK));
-}
-@GetMapping("/purchase/client/name")
-public ResponseEntity <List<Product>> getProductWithTheGivenName(@RequestParam String name) throws ProductDoesNotExistException
-{
-	List<Product> temp = productrepository.getProductsWithGivenName(name);
-	if(!temp.isEmpty())
-	return new ResponseEntity(temp,HttpStatus.OK);
-	else
-		throw new ProductDoesNotExistException("no products with the given name");
-}
+	//System.out.println(Arrays.toString(p.toArray()));
+	List <Product> p=productrepository.findAll();
+	p.retainAll(this.productservice.getAllProductsOfInteroperable(interoperable));
+	p.retainAll(this.productservice.getAllProductsOfTouchscreenCategory(touchscreen));
+	p.retainAll(this.productservice.getAllProductsOfWirelessCategory(wireless));
+	return (new ResponseEntity (p,HttpStatus.OK));
+	}
+
 }
