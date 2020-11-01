@@ -9,7 +9,7 @@ import { DeleteProductComponent } from './delete-product/delete-product.componen
 import { UpdateProductComponent } from './update-product/update-product.component';
 import { ClientComponent } from './client/client.component';
 import { AdminComponent } from './admin/admin.component';
-//import {  FormsModule} from "@angular/forms";
+import {  FormsModule} from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
 @NgModule({
   declarations: [
@@ -25,7 +25,8 @@ import { HttpClientModule } from "@angular/common/http";
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
     
     
   ],

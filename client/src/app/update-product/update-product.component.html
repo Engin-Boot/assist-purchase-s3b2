@@ -1,1 +1,37 @@
-<p>update-product works!</p>
+<div class="col-md-6 offset-md-3">
+    <h3> Update Product </h3>
+    <form (ngSubmit) = "onSubmit()">
+        
+        <div class="form-group">
+            <label> Name</label>
+            <input type="text" class ="form-control" id = "name"
+                [(ngModel)] = "product.name" name = "name">
+        </div>
+    
+        
+    
+        <div class="form-group">
+            <label> Price</label>
+            <input type="number" class ="form-control" id = "price"
+                [(ngModel)] = "product.price" name = "price">
+        </div>
+        <div class="form-group">
+            <label> Wireless Type </label>
+            <input type="text" class ="form-control" id = "wireless"
+                [(ngModel)] = "product.isWireless" name = "wireless">
+        </div>
+        <div class="form-group">
+            <label> TouchScreen Type </label>
+            <input type="text" class ="form-control" id = "touchscreen"
+                [(ngModel)] = "product.isTouchscreen" name = "touchscreen">
+        </div>
+        <div class="form-group">
+            <label> Interoperable Type </label>
+            <input type="text" class ="form-control" id = "interoperable"
+                [(ngModel)] = "product.isInteroperable" name = "interoperable">
+        </div>
+    
+        <button class = "btn btn-success" type ="submit">Submit</button>
+    
+    </form>
+    </div> 

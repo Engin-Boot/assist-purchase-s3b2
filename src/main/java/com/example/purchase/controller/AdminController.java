@@ -45,8 +45,14 @@ public class AdminController
 		p.retainAll(this.productservice.getAllProductsOfInteroperable(interoperable));
 		p.retainAll(this.productservice.getAllProductsOfTouchscreenCategory(touchscreen));
 		p.retainAll(this.productservice.getAllProductsOfWirelessCategory(wireless));
+		p.retainAll(this.productservice.getProductsWithGivenId(id));
 		return (new ResponseEntity (p,HttpStatus.OK));
 		}
+	@GetMapping("/purchase/admin/{id}")
+	public ResponseEntity<Product> getProductById(@PathVariable int id) {
+		Product product = productrepository.findById(id).get();
+		return ResponseEntity.ok(product);
+	}
 	@CrossOrigin(origins="*")
 	@PostMapping(path="/purchase/admin",produces = "application/json", consumes = "application/json")
 	public Product addProduct( @RequestBody Product tempProduct) throws ProductAlreadyExistsException

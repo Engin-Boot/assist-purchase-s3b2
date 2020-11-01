@@ -1,17 +1,14 @@
 package com.example.purchase.services;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 //import com.example.purchase.dto.ProductDTO;
 import com.example.purchase.entities.Product;
-import com.example.purchase.exceptions.ProductDoesNotExistException;
 import com.example.purchase.repositories.ProductRepository;
 @Service
 public class ProductService {
@@ -50,6 +47,15 @@ public class ProductService {
 		List<Product> p=this.productrepository.findAll();
 //		List<Product> p=this.getAllProducts().getBody();
 		if(value!=null) p.retainAll(productrepository.getProductsOfInteroperableCategory(value));
+		return p ;
+		}
+	public List<Product> getProductsWithGivenId(@RequestParam (required=false)Integer id)
+	{
+		List<Product> p=this.productrepository.findAll();
+//		List<Product> p=this.getAllProducts().getBody();
+		List<Product> q=new ArrayList<Product>();
+		
+		if(id!=null) {q.add(productrepository.findById(id).get());p.retainAll(q);}
 		return p ;
 		}
 	

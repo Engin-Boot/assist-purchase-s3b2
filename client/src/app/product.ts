@@ -1,9 +1,10 @@
 export class Product {
     id:number;
-    name:Text;
+    name:String;
     price:number;
-    isTouchscreen: String;
     isWireless:String;
+    isTouchscreen: String;
+    
     isInteroperable:String;
 }
 
