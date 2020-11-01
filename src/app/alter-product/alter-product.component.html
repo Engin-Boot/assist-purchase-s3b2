@@ -1,0 +1,78 @@
+<div class="submit-form">
+    <div *ngIf="!submitted">
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="name"
+          required
+          [(ngModel)]="product.name"
+          name="name"
+        />
+      </div>
+      
+      <div class="form-group">
+        <label for="price">Price</label>
+        <input
+          type="text"
+          class="form-control"
+          id="price" placeholder="enter numeric value"
+          
+          [(ngModel)]="price"
+          name="price"
+        />
+      </div>
+      <div class="form-group">
+        <label for="wireless">Wireless</label>
+        <input
+          type="text"
+          class="form-control"
+          id="wireless" placeholder="enter true or false"
+          
+          [(ngModel)]="wireless"
+          name="wireless"
+        />
+      </div>
+      <div class="form-group">
+        <label for="name">TouchScreen</label>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="enter true or false"
+          id="touchscreen" 
+          
+          [(ngModel)]="touchscreen"
+          name="touchscreen"
+        />
+      </div>
+  
+      <div class="form-group">
+        <label for="interoperable">Interoperable</label>
+        <input
+          class="form-control"
+          id="interoperable"
+          placeholder="enter true or false"
+          [(ngModel)]="interoperable"
+          name="interoperable"
+        />
+      </div>
+  
+      <button (click)="saveTutorial()" class="badge badge-success mr-2">
+        Add</button>
+
+      <button class="badge badge-danger mr-2" (click)="deleteProduct()">
+        Delete
+      </button>
+    
+      <button type="submit" class="badge badge-success" (click)="updateProduct()">
+        Update
+      </button>
+    </div>
+    
+    <div *ngIf="submitted">
+      <h4>You submitted successfully!</h4>
+      
+    </div>
+  </div>
+  
