@@ -29,4 +29,13 @@ export class ProductService {
   deleteProduct(id: number): Observable<Object>{
     return this.httpClient.delete(`${this.homeURL}/${id}`);
   }
+  constructURL(product:Product){
+    const baseURL='http://localhost:8080/purchase/admin';
+    let params=new HttpParams().set('name',product.name.toString());
+    if(product.isInteroperable.length!=0)params=params.set('interoperable',product.isInteroperable.toString());
+    const fullURL = `${baseURL}?${params.toString()}`;
+    console.log(params.toString());
+    console.log(product.isInteroperable.length);
+console.log({ fullURL });
+  }
 }

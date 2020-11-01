@@ -12,6 +12,7 @@ import { AdminComponent } from './admin/admin.component';
 import {  FormsModule} from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
 import { PurchaseHomeComponent } from './purchase-home/purchase-home.component';
+import { FilterProductComponent } from './filter-product/filter-product.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,7 +22,8 @@ import { PurchaseHomeComponent } from './purchase-home/purchase-home.component';
     UpdateProductComponent,
     ClientComponent,
     AdminComponent,
-    PurchaseHomeComponent
+    PurchaseHomeComponent,
+    FilterProductComponent
     
   ],
   imports: [
