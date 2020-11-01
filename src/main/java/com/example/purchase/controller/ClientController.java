@@ -24,7 +24,7 @@ ProductService productservice;
 @CrossOrigin(origins="*")
 
 @GetMapping("/purchase/client")
-public ResponseEntity<List<Product>> getProducts(@RequestParam(required=false) Integer id,@RequestParam(required=false) Boolean wireless,@RequestParam(required=false) Boolean touchscreen,@RequestParam(required=false) Boolean interoperable)
+public ResponseEntity<List<Product>> getProducts(@RequestParam(required=false) Integer id,@RequestParam(required=false) String wireless,@RequestParam(required=false) String touchscreen,@RequestParam(required=false) String interoperable)
 {
 	//System.out.println(Arrays.toString(p.toArray()));
 	List <Product> p=productrepository.findAll();

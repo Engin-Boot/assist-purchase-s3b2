@@ -38,7 +38,7 @@ public class AdminController
 	@CrossOrigin(origins="*")
 
 	@GetMapping("/purchase/admin")
-	public ResponseEntity<List<Product>> getProducts(@RequestParam(required=false) Integer id,@RequestParam(required=false) Boolean wireless,@RequestParam(required=false) Boolean touchscreen,@RequestParam(required=false) Boolean interoperable)
+	public ResponseEntity<List<Product>> getProducts(@RequestParam(required=false) Integer id,@RequestParam(required=false)String wireless,@RequestParam(required=false) String touchscreen,@RequestParam(required=false) String interoperable)
 	{
 		//System.out.println(Arrays.toString(p.toArray()));
 		List <Product> p=productrepository.findAll();
@@ -52,7 +52,7 @@ public class AdminController
 	@PostMapping(path="/purchase/admin",produces = "application/json", consumes = "application/json")
 	public ResponseEntity<String> addProduct( @RequestBody Product tempProduct) throws ProductAlreadyExistsException
 	{
-		Product product=new Product(tempProduct.getName(),tempProduct.getPrice(),tempProduct.isWireless(),tempProduct.isTouchscreen(),tempProduct.isInteroperable());
+		Product product=new Product(tempProduct.getName(),tempProduct.getPrice(),tempProduct.getIsWireless(),tempProduct.getIsTouchscreen(),tempProduct.getIsInteroperable());
 		productrepository.save(product);
 		
 		return new ResponseEntity("new product added to the db",HttpStatus.CREATED);
@@ -61,7 +61,7 @@ public class AdminController
 	@CrossOrigin(origins="*")
 	
 	@DeleteMapping (path="/purchase/admin/{id}")
-	public ResponseEntity<Map<String, Boolean>> deleteProductWithGivenId(@PathVariable int id ) throws ProductDoesNotExistException
+	public ResponseEntity<String> deleteProductWithGivenId(@PathVariable int id ) throws ProductDoesNotExistException
 	{
 		Optional<Product> p =productrepository.findById(id);
 		if (p.isPresent())
@@ -84,9 +84,9 @@ public class AdminController
 		{
 			p.get().setName(tempProduct.getName());
 			p.get().setPrice(tempProduct.getPrice());
-			p.get().setTouchscreen(tempProduct.isTouchscreen());
-			p.get().setInteroperable(tempProduct.isInteroperable());
-			p.get().setWireless(tempProduct.isWireless());
+			p.get().setIsTouchscreen(tempProduct.getIsTouchscreen());
+			p.get().setIsInteroperable(tempProduct.getIsInteroperable());
+			p.get().setIsWireless(tempProduct.getIsWireless());
 			productrepository.save(p.get());
 			//return (new ResponseEntity("product updated",HttpStatus.OK));
 			//p.get().setInteroperable(newisInteroperable);

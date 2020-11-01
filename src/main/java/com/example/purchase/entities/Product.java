@@ -10,12 +10,11 @@ public class Product {
 	@GeneratedValue(strategy= GenerationType.AUTO)
 	private int id;
 	private String name;
-	private int price;
-	private boolean isWireless ;
-	private boolean isTouchscreen ;
-	private boolean isInteroperable ;
-	public Product(int id, String name, int price, boolean isWireless, boolean isTouchscreen,
-			boolean isInteroperable) {
+	private String price;
+	private String isWireless ;
+	private String isTouchscreen ;
+	private String isInteroperable ;
+	public Product(int id, String name, String price, String isWireless, String isTouchscreen, String isInteroperable) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -24,8 +23,7 @@ public class Product {
 		this.isTouchscreen = isTouchscreen;
 		this.isInteroperable = isInteroperable;
 	}
-	public Product( String name, int price, boolean isWireless, boolean isTouchscreen,
-			boolean isInteroperable) {
+	public Product( String name, String price, String isWireless, String isTouchscreen, String isInteroperable) {
 		super();
 		
 		this.name = name;
@@ -34,9 +32,10 @@ public class Product {
 		this.isTouchscreen = isTouchscreen;
 		this.isInteroperable = isInteroperable;
 	}
-	public Product() {
-		super();
-		// TODO Auto-generated constructor stub
+	@Override
+	public String toString() {
+		return "Product [id=" + id + ", name=" + name + ", price=" + price + ", isWireless=" + isWireless
+				+ ", isTouchscreen=" + isTouchscreen + ", isInteroperable=" + isInteroperable + "]";
 	}
 	public int getId() {
 		return id;
@@ -50,29 +49,33 @@ public class Product {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public int getPrice() {
+	public String getPrice() {
 		return price;
 	}
-	public void setPrice(int price) {
+	public void setPrice(String price) {
 		this.price = price;
 	}
-	public boolean isWireless() {
+	public String getIsWireless() {
 		return isWireless;
 	}
-	public void setWireless(boolean isWireless) {
+	public void setIsWireless(String isWireless) {
 		this.isWireless = isWireless;
 	}
-	public boolean isTouchscreen() {
+	public String getIsTouchscreen() {
 		return isTouchscreen;
 	}
-	public void setTouchscreen(boolean isTouchscreen) {
+	public void setIsTouchscreen(String isTouchscreen) {
 		this.isTouchscreen = isTouchscreen;
 	}
-	public boolean isInteroperable() {
+	public String getIsInteroperable() {
 		return isInteroperable;
 	}
-	public void setInteroperable(boolean isInteroperable) {
+	public void setIsInteroperable(String isInteroperable) {
 		this.isInteroperable = isInteroperable;
 	}
-	
+	public Product() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+		
 }

@@ -1,0 +1,6 @@
+for post 
+curl -i -X POST -H "Content-Type: application/json" -d "{\"id\": 1,\"name\":\"dummy\",\"price\":50,\"isWireless\":\"yes\",\"isTouchscreen\":\"yes\",\"isInteroperable\":\"yes\"}" http://localhost:8080/purchase/admin
+fo put
+curl -i -X PUT -H "Content-Type: application/json" -d "{\"id\": 1,\"name\":\"dummy\",\"price\":50,\"isWireless\":\"yes\",\"isTouchscreen\":\"yes\",\"isInteroperable\":\"no\"}" http://localhost:8080/purchase/admin
+for delete
+curl -X DELETE http://localhost:8080/purchase/admin/5 
