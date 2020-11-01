@@ -1,0 +1,26 @@
+<h2> Employee List</h2>
+<var>temp</var>
+<table class = "table table-striped">
+    <thead>
+        <tr>
+            <th> ID</th>
+            <th> Product Name</th>
+            <th> Product Price</th>
+            <th> TouchScreen Type</th>
+            <th> Wireless Type</th>
+            <th> Interoperable Type</th>
+            
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor = "let product of products" >
+           
+            <td> {{ product.id }} </td>
+            <td> {{product.name}}</td>
+            <td> {{product.price}}</td>
+            <td></td>
+            <td>{{product.isWireless}}</td>
+            <td> {{product.isInteroperable}}</td>
+        </tr>
+    </tbody>
+</table>
