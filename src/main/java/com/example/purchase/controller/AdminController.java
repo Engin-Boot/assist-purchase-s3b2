@@ -48,14 +48,13 @@ public class AdminController
 		return (new ResponseEntity (p,HttpStatus.OK));
 		}
 	@CrossOrigin(origins="*")
-
 	@PostMapping(path="/purchase/admin",produces = "application/json", consumes = "application/json")
-	public ResponseEntity<String> addProduct( @RequestBody Product tempProduct) throws ProductAlreadyExistsException
+	public Product addProduct( @RequestBody Product tempProduct) throws ProductAlreadyExistsException
 	{
 		Product product=new Product(tempProduct.getName(),tempProduct.getPrice(),tempProduct.getIsWireless(),tempProduct.getIsTouchscreen(),tempProduct.getIsInteroperable());
 		productrepository.save(product);
-		
-		return new ResponseEntity("new product added to the db",HttpStatus.CREATED);
+		return product;
+		//return new ResponseEntity("new product added to the db",HttpStatus.CREATED);
 	}
 	//@DeleteMapping("/purchase/admin/{id}")
 	@CrossOrigin(origins="*")
