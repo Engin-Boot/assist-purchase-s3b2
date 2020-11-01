@@ -12,25 +12,26 @@ import com.example.purchase.entities.Product;
 import com.example.purchase.repositories.ProductRepository;
 @Service
 public class ProductService {
-	@Autowired
+	//@Autowired
 	private ProductRepository productrepository;
-	
-	public ProductService() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+	@Autowired
 	public ProductService(ProductRepository productrepository) {
 		super();
 		this.productrepository = productrepository;
 	}
+	public ProductService() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	
 	
 	public Optional <Product> getProductsWithGivenId (int id)
-	{return productrepository.findById(id);}
+	{return this.productrepository.findById(id);}
 	//@GetMapping("/purchase/client/category/isWireless")
 	public List<Product> getAllProductsOfWirelessCategory( String value)
 	{
 		List<Product> p=this.productrepository.findAll();
-		if(value!=null) p.retainAll(productrepository.getProductsOfWirelessCategory(value));
+		if(value!=null) p.retainAll(this.productrepository.getProductsOfWirelessCategory(value));
 		return p ;
 	}
 	//@GetMapping("/purchase/client/category/isTouchscreen")
@@ -38,7 +39,7 @@ public class ProductService {
 	{
 		List<Product> p=this.productrepository.findAll();
 		//List<Product> p=this.getAllProducts().getBody();
-		if(value!=null) p.retainAll(productrepository.getProductsOfTouchscreenCategory(value));
+		if(value!=null) p.retainAll(this.productrepository.getProductsOfTouchscreenCategory(value));
 		return p ;
 	}
 	//@GetMapping("/purchase/client/category/isInteroperable")
@@ -46,7 +47,7 @@ public class ProductService {
 	{
 		List<Product> p=this.productrepository.findAll();
 //		List<Product> p=this.getAllProducts().getBody();
-		if(value!=null) p.retainAll(productrepository.getProductsOfInteroperableCategory(value));
+		if(value!=null) p.retainAll(this.productrepository.getProductsOfInteroperableCategory(value));
 		return p ;
 		}
 	public List<Product> getProductsWithGivenId(@RequestParam (required=false)Integer id)
@@ -55,7 +56,7 @@ public class ProductService {
 //		List<Product> p=this.getAllProducts().getBody();
 		List<Product> q=new ArrayList<Product>();
 		
-		if(id!=null) {q.add(productrepository.findById(id).get());p.retainAll(q);}
+		if(id!=null) {q.add(this.productrepository.findById(id).get());p.retainAll(q);}
 		return p ;
 		}
 	

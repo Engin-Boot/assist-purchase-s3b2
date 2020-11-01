@@ -4,7 +4,6 @@ export class Product {
     price:number;
     isWireless:String;
     isTouchscreen: String;
-    
     isInteroperable:String;
 }
 

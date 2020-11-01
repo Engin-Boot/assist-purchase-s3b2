@@ -29,13 +29,26 @@ export class ProductService {
   deleteProduct(id: number): Observable<Object>{
     return this.httpClient.delete(`${this.homeURL}/${id}`);
   }
-  constructURL(product:Product){
+  constructURL(product:Product):String{
     const baseURL='http://localhost:8080/purchase/admin';
-    let params=new HttpParams().set('name',product.name.toString());
-    if(product.isInteroperable.length!=0)params=params.set('interoperable',product.isInteroperable.toString());
-    const fullURL = `${baseURL}?${params.toString()}`;
-    console.log(params.toString());
-    console.log(product.isInteroperable.length);
-console.log({ fullURL });
+    let params=new HttpParams();
+    let fullURL:String;
+    console.log(product.name,product.isTouchscreen,product.isWireless);
+    if(product.name!=undefined&&product.name.length!=0)params=params.set('name',product.name.toString()); 
+    if(product.isWireless!=undefined&&product.isWireless.length!=0)params=params.set('wireless',product.isWireless.toString());
+    if(product.isTouchscreen!=undefined&&product.isTouchscreen.length!=0)params=params.set('touchscreen',product.isTouchscreen.toString());
+    if(product.isInteroperable!=undefined&&product.isInteroperable.length!=0)params=params.set('interoperable',product.isInteroperable.toString());
+    if(params.toString().length!=0) fullURL = `${baseURL}?${params.toString()}`;
+    else fullURL = `${baseURL}${params.toString()}`;
+    //console.log(params.toString());
+    //console.log(product.isInteroperable.length);
+//console.log({ fullURL });
+return fullURL;
   }
+  getFilteredProductList(product:Product): Observable<Product[]>{
+    var newLocal = this.constructURL(product);
+    console.log(newLocal);
+    // console.log(this.httpClient.get<Product[]>(`${newLocal}`));
+    return this.httpClient.get<Product[]>({newLocal});
+  }  
 }
