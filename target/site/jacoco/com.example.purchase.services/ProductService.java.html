@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ProductService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">purchase</a> &gt; <a href="index.source.html" class="el_package">com.example.purchase.services</a> &gt; <span class="el_source">ProductService.java</span></div><h1>ProductService.java</h1><pre class="source lang-java linenums">package com.example.purchase.services;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
+
+//import com.example.purchase.dto.ProductDTO;
+import com.example.purchase.entities.Product;
+import com.example.purchase.repositories.ProductRepository;
+@Service
+public class ProductService {
+	//@Autowired
+	private final ProductRepository productrepository;
+	@Autowired
+	public ProductService(ProductRepository productrepository) {
+<span class="fc" id="L19">		super();</span>
+<span class="fc" id="L20">		this.productrepository = productrepository;</span>
+<span class="fc" id="L21">	}</span>
+	
+	
+	
+	public Optional &lt;Product&gt; getProductsWithGivenId (int id)
+<span class="nc" id="L26">	{return this.productrepository.findById(id);}</span>
+	//@GetMapping(&quot;/purchase/client/category/isWireless&quot;)
+	public List&lt;Product&gt; getAllProductsOfWirelessCategory( String value)
+	{
+<span class="fc" id="L30">		List&lt;Product&gt; p=this.productrepository.findAll();</span>
+<span class="pc bpc" id="L31" title="1 of 2 branches missed.">		if(value!=null) p.retainAll(this.productrepository.getProductsOfWirelessCategory(value));</span>
+<span class="fc" id="L32">		return p ;</span>
+	}
+	//@GetMapping(&quot;/purchase/client/category/isTouchscreen&quot;)
+	public List&lt;Product&gt; getAllProductsOfTouchscreenCategory(@RequestParam (required=false)String value)
+	{
+<span class="fc" id="L37">		List&lt;Product&gt; p=this.productrepository.findAll();</span>
+		//List&lt;Product&gt; p=this.getAllProducts().getBody();
+<span class="pc bpc" id="L39" title="1 of 2 branches missed.">		if(value!=null) p.retainAll(this.productrepository.getProductsOfTouchscreenCategory(value));</span>
+<span class="fc" id="L40">		return p ;</span>
+	}
+	//@GetMapping(&quot;/purchase/client/category/isInteroperable&quot;)
+	public List&lt;Product&gt; getAllProductsOfInteroperable(@RequestParam (required=false)String value)
+	{
+<span class="fc" id="L45">		List&lt;Product&gt; p=this.productrepository.findAll();</span>
+//		List&lt;Product&gt; p=this.getAllProducts().getBody();
+<span class="pc bpc" id="L47" title="1 of 2 branches missed.">		if(value!=null) p.retainAll(this.productrepository.getProductsOfInteroperableCategory(value));</span>
+<span class="fc" id="L48">		return p ;</span>
+		}
+	public List&lt;Product&gt; getProductsWithGivenId(@RequestParam (required=false)Integer id)
+	{
+<span class="nc" id="L52">		List&lt;Product&gt; p=this.productrepository.findAll();</span>
+//		List&lt;Product&gt; p=this.getAllProducts().getBody();
+<span class="nc" id="L54">		List&lt;Product&gt; q=new ArrayList&lt;Product&gt;();</span>
+		
+<span class="nc bnc" id="L56" title="All 2 branches missed.">		if(id!=null) {q.add(this.productrepository.findById(id).get());p.retainAll(q);}</span>
+<span class="nc" id="L57">		return p ;</span>
+		}
+	
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

@@ -30,10 +30,10 @@ import com.example.purchase.services.ProductService;
 public class AdminController 
 {
 	
-	@Autowired 
+	@Autowired
 	ProductRepository productrepository;
 	@Autowired
-	ProductService productservice;
+	ProductService productservice;//=new ProductService(this.productrepository);
 //	@Autowired
 	//ProductRepository productrepository;
 	@CrossOrigin(origins="*")
@@ -42,11 +42,21 @@ public class AdminController
 	public ResponseEntity<List<Product>> getProducts(@RequestParam(required=false) Integer id,@RequestParam(required=false)String wireless,@RequestParam(required=false) String touchscreen,@RequestParam(required=false) String interoperable)
 	{
 		//System.out.println(Arrays.toString(p.toArray()));
-		List <Product> p=productrepository.findAll();
+		List <Product> p=this.productrepository.findAll();
 		p.retainAll(this.productservice.getAllProductsOfInteroperable(interoperable));
 		p.retainAll(this.productservice.getAllProductsOfTouchscreenCategory(touchscreen));
 		p.retainAll(this.productservice.getAllProductsOfWirelessCategory(wireless));
 		p.retainAll(this.productservice.getProductsWithGivenId(id));
+		return (new ResponseEntity (p,HttpStatus.OK));
+		}
+	@CrossOrigin(origins="*")
+
+	@GetMapping("/purchase")
+	public ResponseEntity<List<Product>> getProducts() throws Exception
+	{
+		//System.out.println(Arrays.toString(p.toArray()));
+		List <Product> p=this.productrepository.findAll();
+		
 		return (new ResponseEntity (p,HttpStatus.OK));
 		}
 	@CrossOrigin(origins="*")

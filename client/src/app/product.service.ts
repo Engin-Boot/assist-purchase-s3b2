@@ -49,6 +49,6 @@ return fullURL;
     var newLocal = this.constructURL(product);
     console.log(newLocal);
     // console.log(this.httpClient.get<Product[]>(`${newLocal}`));
-    return this.httpClient.get<Product[]>({newLocal});
+    return this.httpClient.get<Product[]>(`${newLocal}`);
   }  
 }

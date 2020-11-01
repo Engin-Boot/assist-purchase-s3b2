@@ -13,16 +13,13 @@ import com.example.purchase.repositories.ProductRepository;
 @Service
 public class ProductService {
 	//@Autowired
-	private ProductRepository productrepository;
+	private final ProductRepository productrepository;
 	@Autowired
 	public ProductService(ProductRepository productrepository) {
 		super();
 		this.productrepository = productrepository;
 	}
-	public ProductService() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+	
 	
 	
 	public Optional <Product> getProductsWithGivenId (int id)
