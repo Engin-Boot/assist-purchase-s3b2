@@ -1,4 +1,5 @@
 package com.example.purchase.controller;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -48,6 +49,7 @@ public class AdminController
 		p.retainAll(this.productservice.getProductsWithGivenId(id));
 		return (new ResponseEntity (p,HttpStatus.OK));
 		}
+	@CrossOrigin(origins="*")
 	@GetMapping("/purchase/admin/{id}")
 	public ResponseEntity<Product> getProductById(@PathVariable int id) {
 		Product product = productrepository.findById(id).get();
@@ -66,13 +68,16 @@ public class AdminController
 	@CrossOrigin(origins="*")
 	
 	@DeleteMapping (path="/purchase/admin/{id}")
-	public ResponseEntity<String> deleteProductWithGivenId(@PathVariable int id ) throws ProductDoesNotExistException
+	public ResponseEntity<Map<String, Boolean>> deleteProductWithGivenId(@PathVariable int id ) throws ProductDoesNotExistException
 	{
-		Optional<Product> p =productrepository.findById(id);
-		if (p.isPresent())
+		Product p=productrepository.findById(id).get();
+		if (1==1)
 		{
-			this.productrepository.deleteById(id);
-			return new ResponseEntity("product deleted",HttpStatus.OK);
+			this.productrepository.delete(p);
+			Map<String, Boolean> response = new HashMap<>();
+			response.put("deleted", Boolean.TRUE);
+			return ResponseEntity.ok(response);
+			//return new ResponseEntity("product deleted",HttpStatus.OK);
 			//p.get().setInteroperable(newisInteroperable);
 			//this.saveValidProduct(p.get(), productrepository);
 		}
@@ -84,15 +89,15 @@ public class AdminController
 	@PutMapping (path="/purchase/admin",produces = "application/json", consumes = "application/json")
 	public void updateProduct(@RequestBody Product tempProduct) throws ProductDoesNotExistException
 	{
-		Optional<Product> p =productrepository.findById(tempProduct.getId());
-		if (p.isPresent())
+		Product p =productrepository.findById(tempProduct.getId()).get();
+		if (1==1)
 		{
-			p.get().setName(tempProduct.getName());
-			p.get().setPrice(tempProduct.getPrice());
-			p.get().setIsTouchscreen(tempProduct.getIsTouchscreen());
-			p.get().setIsInteroperable(tempProduct.getIsInteroperable());
-			p.get().setIsWireless(tempProduct.getIsWireless());
-			productrepository.save(p.get());
+			p.setName(tempProduct.getName());
+			p.setPrice(tempProduct.getPrice());
+			p.setIsTouchscreen(tempProduct.getIsTouchscreen());
+			p.setIsInteroperable(tempProduct.getIsInteroperable());
+			p.setIsWireless(tempProduct.getIsWireless());
+			productrepository.save(p);
 			//return (new ResponseEntity("product updated",HttpStatus.OK));
 			//p.get().setInteroperable(newisInteroperable);
 			//this.saveValidProduct(p.get(), productrepository);
