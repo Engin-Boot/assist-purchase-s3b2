@@ -13,5 +13,5 @@ export class PurchaseHomeComponent implements OnInit {
   ngOnInit(): void {
   }
   Onclick()
-  {this.router.navigate['admin'];}
+  {this.router.navigate['product-list'];}
 }

@@ -2,7 +2,7 @@ GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_
 purchase,com.example.purchase.controller,ClientController,31,3,0,0,5,1,1,1,1,1
 purchase,com.example.purchase.controller,AdminController,94,48,0,0,17,10,3,4,3,4
 purchase,com.example.purchase,PurchaseApplication,5,3,0,0,2,1,1,1,1,1
-purchase,com.example.purchase.entities,Product,83,37,0,0,21,16,5,11,5,11
-purchase,com.example.purchase.services,ProductService,31,51,5,3,5,12,6,4,2,4
+purchase,com.example.purchase.entities,Product,75,45,0,0,17,20,3,13,3,13
+purchase,com.example.purchase.services,ProductService,25,61,5,3,4,14,5,6,1,6
 purchase,com.example.purchase.exceptions,ProductAlreadyExistsException,7,0,0,0,4,0,2,0,2,0
 purchase,com.example.purchase.exceptions,ProductDoesNotExistException,7,0,0,0,4,0,2,0,2,0

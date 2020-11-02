@@ -13,13 +13,14 @@ import com.example.purchase.repositories.ProductRepository;
 @Service
 public class ProductService {
 	//@Autowired
-	private final ProductRepository productrepository;
+	private  ProductRepository productrepository;
 	@Autowired
 	public ProductService(ProductRepository productrepository) {
 		super();
 		this.productrepository = productrepository;
 	}
-	
+	public void setdao(ProductRepository productrepository)
+	{this.productrepository=productrepository;}
 	
 	
 	public Optional <Product> getProductsWithGivenId (int id)

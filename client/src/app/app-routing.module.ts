@@ -8,7 +8,8 @@ import { ProductListComponent } from './product-list/product-list.component';
 import { UpdateProductComponent } from './update-product/update-product.component';
 import { FilterProductComponent } from './filter-product/filter-product.component';
 import { DisplayFilteredProductsComponent } from "./display-filtered-products/display-filtered-products.component";
-const routes: Routes = [{path:'admin',component:AdminComponent},{path:'display-filtered-products',component:DisplayFilteredProductsComponent},{path:'filter-product',component:FilterProductComponent},{path:'client',component:ClientComponent},{path:'create-product',component:CreateProductComponent},{path:'delete-product',component:DeleteProductComponent},{path:'product-list',component:ProductListComponent},{path:'update-product/:id',component:UpdateProductComponent }];
+import { PurchaseHomeComponent } from './purchase-home/purchase-home.component';
+const routes: Routes = [{path:'purchase-home',component:PurchaseHomeComponent},{path:'admin',component:AdminComponent},{path:'display-filtered-products',component:DisplayFilteredProductsComponent},{path:'filter-product',component:FilterProductComponent},{path:'client',component:ClientComponent},{path:'create-product',component:CreateProductComponent},{path:'delete-product',component:DeleteProductComponent},{path:'product-list',component:ProductListComponent},{path:'update-product/:id',component:UpdateProductComponent }];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
