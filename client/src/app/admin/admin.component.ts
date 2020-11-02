@@ -12,6 +12,7 @@ export class AdminComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  
+  Onclick()
+  {this.router.navigate['admin'];}
 
 }
