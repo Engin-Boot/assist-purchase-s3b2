@@ -35,7 +35,7 @@ public class AdminControllerTest {
     	mockMvc.perform(get("/purchase")
     		    .contentType("application/json"))
     		    .andExpect(status().isOk());
-   
+    }
     @Test
     public void getOkTest() throws Exception
     {
