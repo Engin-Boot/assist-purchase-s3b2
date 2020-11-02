@@ -36,13 +36,7 @@ public class AdminControllerTest {
     		    .contentType("application/json"))
     		    .andExpect(status().isOk());
     }
-    @Test
-    public void deleteTest() throws Exception
-    {
-    	mockMvc.perform(delete("/purchase/admin/26")
-    		    .contentType("application/json"))
-    		    .andExpect(status().isOk());
-    }
+   
     @Test
     public void getOkTest() throws Exception
     {
