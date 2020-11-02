@@ -8,7 +8,7 @@ import { templateJitUrl } from '@angular/compiler';
   providedIn: 'root'
 })
 export class ProductService {
-
+          filterURL:String;
   constructor(private httpClient:HttpClient) { }
  
   getAllProductList(): Observable<Product[]>{
@@ -30,7 +30,7 @@ export class ProductService {
     return this.httpClient.delete(`${this.homeURL}/${id}`);
   }
   constructURL(product:Product):String{
-    const baseURL='http://localhost:8080/purchase/admin';
+    const baseURL="http://localhost:8080/purchase/admin";
     let params=new HttpParams();
     let fullURL:String;
     console.log(product.name,product.isTouchscreen,product.isWireless);
@@ -43,12 +43,14 @@ export class ProductService {
     //console.log(params.toString());
     //console.log(product.isInteroperable.length);
 //console.log({ fullURL });
-return fullURL;
+    this.filterURL=fullURL;
+    console.log(this.filterURL);
+    return fullURL;
   }
-  getFilteredProductList(product:Product): Observable<Product[]>{
-    var newLocal = this.constructURL(product);
-    console.log(newLocal);
+  getFilteredProductList(): Observable<Product[]>{
+    //var newLocal = thi;
+    //console.log(newLocal);
     // console.log(this.httpClient.get<Product[]>(`${newLocal}`));
-    return this.httpClient.get<Product[]>(`${newLocal}`);
+    return this.httpClient.get<Product[]>(`${this.filterURL}`);
   }  
 }

@@ -13,6 +13,8 @@ import {  FormsModule} from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
 import { PurchaseHomeComponent } from './purchase-home/purchase-home.component';
 import { FilterProductComponent } from './filter-product/filter-product.component';
+import { ClientProductListComponent } from './client-product-list/client-product-list.component';
+import { DisplayFilteredProductsComponent } from './display-filtered-products/display-filtered-products.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,7 +25,9 @@ import { FilterProductComponent } from './filter-product/filter-product.componen
     ClientComponent,
     AdminComponent,
     PurchaseHomeComponent,
-    FilterProductComponent
+    FilterProductComponent,
+    ClientProductListComponent,
+    DisplayFilteredProductsComponent
     
   ],
   imports: [

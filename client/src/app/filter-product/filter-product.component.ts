@@ -14,21 +14,19 @@ export class FilterProductComponent implements OnInit {
 
   ngOnInit(): void {
    // this.getProducts();
+   
   }
   onSubmit(){
-   //console.log(this.product);
-   this.getProducts();
+   console.log(this.product);
+   this.setFilterURL();
+   this.goToFilterProductList();
    //console.log(this.productService.constructURL(this.product));
   }
-  goToProductList() {
-    this.router.navigate(['/product-list']);
+  goToFilterProductList() {
+    this.router.navigate(['/display-filtered-products']);
   }
-  private getProducts():void
-  {
-    this.productService.getFilteredProductList(this.product).subscribe(data => {
-      this.products=data;
-    });
-    //console.log(this.products);
+    //console.log(this.products[0]);
   //    return this.products;
-  }
+  setFilterURL()
+  {this.productService.constructURL(this.product);}
 }
