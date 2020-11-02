@@ -26,4 +26,4 @@ jobs:
     - name: Maven clean 
       run: mvn clean
     - name: Maven build and test
-      run: mvn compile
+      run: mvn test
