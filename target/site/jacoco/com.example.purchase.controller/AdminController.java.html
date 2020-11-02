@@ -42,12 +42,12 @@ import com.example.purchase.services.ProductService;
 	public ResponseEntity&lt;List&lt;Product&gt;&gt; getProducts(@RequestParam(required=false) Integer id,@RequestParam(required=false)String wireless,@RequestParam(required=false) String touchscreen,@RequestParam(required=false) String interoperable)
 	{
 		//System.out.println(Arrays.toString(p.toArray()));
-<span class="nc" id="L45">		List &lt;Product&gt; p=this.productrepository.findAll();</span>
-<span class="nc" id="L46">		p.retainAll(this.productservice.getAllProductsOfInteroperable(interoperable));</span>
-<span class="nc" id="L47">		p.retainAll(this.productservice.getAllProductsOfTouchscreenCategory(touchscreen));</span>
-<span class="nc" id="L48">		p.retainAll(this.productservice.getAllProductsOfWirelessCategory(wireless));</span>
-<span class="nc" id="L49">		p.retainAll(this.productservice.getProductsWithGivenId(id));</span>
-<span class="nc" id="L50">		return (new ResponseEntity (p,HttpStatus.OK));</span>
+<span class="fc" id="L45">		List &lt;Product&gt; p=this.productrepository.findAll();</span>
+<span class="fc" id="L46">		p.retainAll(this.productservice.getAllProductsOfInteroperable(interoperable));</span>
+<span class="fc" id="L47">		p.retainAll(this.productservice.getAllProductsOfTouchscreenCategory(touchscreen));</span>
+<span class="fc" id="L48">		p.retainAll(this.productservice.getAllProductsOfWirelessCategory(wireless));</span>
+<span class="fc" id="L49">		p.retainAll(this.productservice.getProductsWithGivenId(id));</span>
+<span class="fc" id="L50">		return (new ResponseEntity (p,HttpStatus.OK));</span>
 		}
 	@CrossOrigin(origins=&quot;*&quot;)
 

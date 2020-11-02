@@ -29,7 +29,7 @@ public class ProductService {
 	public List&lt;Product&gt; getAllProductsOfWirelessCategory( String value)
 	{
 <span class="fc" id="L31">		List&lt;Product&gt; p=this.productrepository.findAll();</span>
-<span class="pc bpc" id="L32" title="1 of 2 branches missed.">		if(value!=null) p.retainAll(this.productrepository.getProductsOfWirelessCategory(value));</span>
+<span class="fc bfc" id="L32" title="All 2 branches covered.">		if(value!=null) p.retainAll(this.productrepository.getProductsOfWirelessCategory(value));</span>
 <span class="fc" id="L33">		return p ;</span>
 	}
 	//@GetMapping(&quot;/purchase/client/category/isTouchscreen&quot;)
@@ -37,7 +37,7 @@ public class ProductService {
 	{
 <span class="fc" id="L38">		List&lt;Product&gt; p=this.productrepository.findAll();</span>
 		//List&lt;Product&gt; p=this.getAllProducts().getBody();
-<span class="pc bpc" id="L40" title="1 of 2 branches missed.">		if(value!=null) p.retainAll(this.productrepository.getProductsOfTouchscreenCategory(value));</span>
+<span class="fc bfc" id="L40" title="All 2 branches covered.">		if(value!=null) p.retainAll(this.productrepository.getProductsOfTouchscreenCategory(value));</span>
 <span class="fc" id="L41">		return p ;</span>
 	}
 	//@GetMapping(&quot;/purchase/client/category/isInteroperable&quot;)
@@ -45,17 +45,17 @@ public class ProductService {
 	{
 <span class="fc" id="L46">		List&lt;Product&gt; p=this.productrepository.findAll();</span>
 //		List&lt;Product&gt; p=this.getAllProducts().getBody();
-<span class="pc bpc" id="L48" title="1 of 2 branches missed.">		if(value!=null) p.retainAll(this.productrepository.getProductsOfInteroperableCategory(value));</span>
+<span class="fc bfc" id="L48" title="All 2 branches covered.">		if(value!=null) p.retainAll(this.productrepository.getProductsOfInteroperableCategory(value));</span>
 <span class="fc" id="L49">		return p ;</span>
 		}
 	public List&lt;Product&gt; getProductsWithGivenId(@RequestParam (required=false)Integer id)
 	{
-<span class="nc" id="L53">		List&lt;Product&gt; p=this.productrepository.findAll();</span>
+<span class="fc" id="L53">		List&lt;Product&gt; p=this.productrepository.findAll();</span>
 //		List&lt;Product&gt; p=this.getAllProducts().getBody();
-<span class="nc" id="L55">		List&lt;Product&gt; q=new ArrayList&lt;Product&gt;();</span>
+<span class="fc" id="L55">		List&lt;Product&gt; q=new ArrayList&lt;Product&gt;();</span>
 		
-<span class="nc bnc" id="L57" title="All 2 branches missed.">		if(id!=null) {q.add(this.productrepository.findById(id).get());p.retainAll(q);}</span>
-<span class="nc" id="L58">		return p ;</span>
+<span class="pc bpc" id="L57" title="1 of 2 branches missed.">		if(id!=null) {q.add(this.productrepository.findById(id).get());p.retainAll(q);}</span>
+<span class="fc" id="L58">		return p ;</span>
 		}
 	
 }

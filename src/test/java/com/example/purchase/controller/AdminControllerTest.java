@@ -44,5 +44,12 @@ public class AdminControllerTest {
     		    .contentType("application/json"))
     		    .andExpect(status().isOk());
     }
+    @Test
+    public void getFilterOkTest() throws Exception
+    {
+    	mockMvc.perform(get("/purchase/admin")
+    		    .contentType("application/json"))
+    		    .andExpect(status().isOk());
+    }
     
 }

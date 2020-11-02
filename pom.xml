@@ -81,6 +81,19 @@
 	<build>
 		<plugins>
 		<plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-failsafe-plugin</artifactId>
+        <version>3.0.0-M5</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>integration-test</goal>
+              <goal>verify</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+		<plugin>
             <groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
 				<version>0.8.6</version>
@@ -134,10 +147,58 @@
 					<artifactId>maven-project-info-reports-plugin</artifactId>
 					<version>3.0.0</version>
 				</plugin>
+				<plugin>
+        <groupId>org.eclipse.jetty</groupId>
+        <artifactId>jetty-maven-plugin</artifactId>
+        <version>9.2.2.v20140723</version>
+                <configuration>
+          
+          <scanIntervalSeconds>10</scanIntervalSeconds>
+          <stopPort>8005</stopPort>
+          <stopKey>STOP</stopKey>
+         
+        </configuration>
+        
+        <executions>
+          
+          <execution>
+            <id>start-jetty</id>
+            <phase>pre-integration-test</phase>
+            <goals>
+              <goal>start</goal>
+            </goals>
+            <configuration>
+              <scanIntervalSeconds>0</scanIntervalSeconds>
+              <daemon>true</daemon>
+            </configuration>
+          </execution>
+          <execution>
+            <id>stop-jetty</id>
+            <phase>post-integration-test</phase>
+            <goals>
+              <goal>stop</goal>
+            </goals>
+          </execution>
+        
+        </executions>
+              </plugin>
 		</plugins>
 	</build>
 	<reporting> 
 	<plugins>
+	 <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-report-plugin</artifactId>
+        <version>3.0.0-M5</version>
+        <reportSets>
+          <reportSet>
+            <id>integration-tests</id>
+            <reports>
+              <report>failsafe-report-only</report>
+            </reports>
+          </reportSet>
+        </reportSets>
+      </plugin>
 	<plugin>
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
