@@ -32,5 +32,6 @@ export class ProductListComponent implements OnInit {
       this.getProducts();
     })
   }
-  
+  OnClick()
+  {window.alert("Thanks for purchasing this");}  
 }

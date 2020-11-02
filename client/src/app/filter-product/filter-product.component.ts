@@ -29,4 +29,6 @@ export class FilterProductComponent implements OnInit {
   //    return this.products;
   setFilterURL()
   {this.productService.constructURL(this.product);}
+  OnClick()
+  {window.alert("Thanks for purchasing this");} 
 }
